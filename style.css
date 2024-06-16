@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+*{
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 600;
+    font-style: italic;
+}
+body{
+    margin: 0;
+    height: 96vh;
+    width: 98%;
+    background-image: url(mar.jpg);
+    background-size: cover;
+    background-position: center;
+    -webkit-background-size: cover; /* Para navegadores WebKit (Safari, Chrome) */
+    -moz-background-size: cover; /* Para navegadores Gecko (Firefox) */
+    -o-background-size: cover; /* Para Opera */
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+.circle {
+    width: 5vh; /* Ancho del círculo en función del alto del viewport */
+    height: 5vh; /* Alto del círculo en función del alto del viewport */
+    border-radius: 50%;
+    border: 2px solid #000;
+    position: relative;
+    overflow: hidden;
+}
+.fill {
+    width: 0%;
+    height: 100%;
+    background-color: #FFD700;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease; /* Transición suave para el efecto de llenado */
+}
+label{
+    margin-right: 2vh;
+    color: #fff700;
+    border: none;
+    font-size: 4vh;
+}
+.borroso {
+    filter: blur(5px); /* Ajusta el valor de blur según la cantidad de desenfoque que desees */
+}
+.nave {
+    width: 15vh;
+    position: absolute;
+    top: 86%; /* Ajusta la posición vertical según sea necesario */
+    left: 50%; /* Ajusta la posición horizontal según sea necesario */
+    transform: translate(-50%, -50%); /* Centra la imagen */
+    transition: left 0.3s ease; /* Animación suave */
+    z-index: 10;
+}
+.imagen {
+    width: 20vh;
+    position: fixed;
+    top: 12%;
+    display: none; /* Las imágenes estarán ocultas al principio */
+    transform: rotate(180deg); /* Rotar la imagen 180 grados */
+}
+.play-button {
+    background-color: #ff0000;
+    border: none;
+    border-radius: 5%;
+    color: white;
+    font-size: 3rem;
+    padding: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.play-button:hover {
+    background-color: #cc0000;
+    transform: scale(1.1);
+}
+
+.play-button:focus {
+    outline: none;
+}
+.play-button-container {
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+.bottom-div {
+    background-image: url(madera.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: 0;
+    left: 50%; /* Centrar horizontalmente */
+    transform: translateX(-50%); /* Centrar horizontalmente */
+    width: 99%; /* Ancho deseado */
+    background-color: lightgray;
+    padding: 10px;
+    display: flex; /* Utilizar flexbox para centrar los botones */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    text-align: center; 
+    display: none;
+    padding-bottom: 2%;
+    margin-bottom: -4%;
+    z-index: 10;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #262826;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #000000;
+}
+
+.button.secondary {
+    background-color: #e82626;
+}
+
+/* Estilo al pasar el ratón sobre el segundo botón */
+.button.secondary:hover {
+    background-color: #7c0e0e;
+}
+
+.animated-element {
+    position: absolute;
+    width: 10vh;
+    height: 16vh;
+    z-index: 1;
+}
+
+.proyectil {
+    position: absolute;
+    width: 2vh;
+    height: 10vh;
+    z-index: 1;
+    transform: rotate(180deg);
+}
+
+.explosion {
+    position: absolute;
+    width: 20vh;
+    height: 20vh;
+}
+
+.div-flotante {
+    background-image: url(madera.jpg);
+    background-size: cover;
+    position: fixed; /* Lo fija en la ventana del navegador */
+    top: 0; /* Lo posiciona en la parte superior */
+    left: 0; /* Lo posiciona en la parte izquierda */
+    background-color: rgb(159, 217, 236);
+    border: 1px solid #999;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    padding-left: 1%;
+    display: flex; /* Cambia el flujo de los elementos a flexbox */
+    align-items: center; /* Centra verticalmente los elementos */
+    z-index: 10;
+}
+h2{
+    color: red;
+    margin-right: 30vh;
+}
+
+.unico2{
+    transform: rotate(0deg) !important; /* Rotar la imagen 180 grados */
+}
+
+.final{
+    height: 120vh;
+    margin: 0;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    background-image: url(derrota.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 7vh;
+}
+
+#F{
+    font-size: 10vh;
+}
+
+#puntos2{
+    font-size: 8vh;
+}
+
+@media only screen and (max-width: 768px) {
+    .nave{
+        width: 10vh;
+        top: 84%;
+    }
+    .imagen{
+        width: 12vh;
+    }
+    .bottom-div {
+        display: block;
+    }
+    .explosion {
+        position: absolute;
+        width: 10vh;
+        height: 10vh;
+    }
+    .animated-element {
+        position: absolute;
+        width: 5vh;
+        height: 6vh;
+        z-index: 1;
+    }
+    .proyectil{
+        position: absolute;
+        width: 1vh;
+        height: 6vh;
+        z-index: 1;
+    }
+    h2{
+        font-size: 2vh;
+        margin-right: 3vh;
+    }
+    #F{
+        font-size: 6vh;
+    }
+    
+    #puntos2{
+        font-size: 4vh;
+    }
+    .circle {
+        width: 2vh; /* Ancho del círculo en función del alto del viewport */
+        height: 2vh; /* Alto del círculo en función del alto del viewport */
+    }
+    label{
+        font-size: 2vh;
+    }
+    #te{
+        display: none;
+    }
+    .play-button {
+        font-size: 2rem;
+    }
+}

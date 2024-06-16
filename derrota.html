@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>American Air</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="logo.webp" type="image/x-icon">
+</head>
+<body class="final">
+    <audio id="musica" autoplay>
+        <source src="lose.mp3" type="audio/mpeg">
+    </audio>
+    <h1 id="F">¡Has perdido!</h1>
+    <button class="play-button" id="backButton">Volver a jugar</button>
+
+    <script>
+        document.getElementById('backButton').addEventListener('click', function() {
+            history.back();
+        });
+    </script>
+</body>
+</html>
