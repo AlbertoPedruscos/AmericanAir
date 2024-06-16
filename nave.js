@@ -491,7 +491,7 @@ class EnemigoUnico2 {
         const factorEscala = ventanaAncho / referenciaAncho; // Inverso del factor de escala
     
         let direccion = Math.random() < 0.5 ? -1 : 1;
-        const velocidad = 14 * factorEscala; // Ajustamos la velocidad según el factor de escala
+        const velocidad = 30 * factorEscala; // Ajustamos la velocidad según el factor de escala
     
         let left = Math.random() * (ventanaAncho - 100);
     
@@ -530,7 +530,7 @@ class EnemigoUnico2 {
                 if (document.body.contains(this.nave)) {
                     dispararProyectiles(); // Vuelve a disparar si no está destruida
                 }
-            }, 2000);
+            }, 1000);
         };
 
         dispararProyectiles();

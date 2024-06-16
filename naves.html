@@ -37,6 +37,18 @@ let puntosT = 0;
 
 var level = 1;
 
+window.onload = function() {
+
+// Obtén el valor actual de x (puedes ajustar esto según cómo obtengas x)
+var x = obtenerValorDeX(); // Esta función debería obtener el valor actual de x
+
+// Compara el valor actual con el valor deseado
+if (puntosT!=0) {
+    // Si no coincide, recarga la página
+    location.reload();
+}
+}
+
 function puntos(puntos) {
     puntosT = puntosT + puntos;
     document.getElementById('puntos').innerHTML = "Puntuación: " + puntosT + " puntos";
