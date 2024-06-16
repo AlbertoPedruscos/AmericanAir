@@ -42,6 +42,13 @@
 var level = 4;
 
 let puntosT = 0;
+
+window.onpageshow = function(event) {
+    if (event.persisted) {
+        window.location.reload();
+    }
+};
+
 // Function to update points and display them
 function puntos(puntos) {
     puntosT = puntosT + puntos;
