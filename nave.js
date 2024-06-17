@@ -534,7 +534,11 @@ function verificarColision() {
                 rect1.bottom < rect2.top || 
                 rect1.top > rect2.bottom)) {
             // Si hay colisión, redirigir a otra página
-            window.location.href = 'derrota.html';
+            if (!ultimate) {
+                window.location.href = "derrota.html";
+            } else {
+                // Lógica adicional si la nave tiene habilidad ultimate activada
+            }        
         }
     }
 }
