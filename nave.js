@@ -340,7 +340,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Calcular el centro del elemento estático
         var centerX = staticElementLeft + staticElementWidth / 2;
-        var centerY = staticElementTop + staticElementHeight / 2;
+        var centerY = staticElementTop + staticElementHeight / 4;
 
         cooldown = true;
 
