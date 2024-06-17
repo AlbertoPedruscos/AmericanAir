@@ -479,7 +479,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 window.location.href = "naves4.html";
                             }
                         }
-                        else if (enemigo.classList.contains('efinal') && impacto==24){
+                        else if (enemigo.classList.contains('efinal') && impactoB==24){
                             animatedElement.remove(); // Eliminar el misil después de la colisión
                             showExplosion(enemigoCenterX - 50, enemigoCenterY - 50); // Mostrar explosión centrada
                             cooldown = false; // Resetear el cooldown después de la colisión
