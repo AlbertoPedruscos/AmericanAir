@@ -483,7 +483,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             animatedElement.remove(); // Eliminar el misil después de la colisión
                             showExplosion(enemigoCenterX - 50, enemigoCenterY - 50); // Mostrar explosión centrada
                             cooldown = false; // Resetear el cooldown después de la colisión
-                            if (level==4){
+                            if (level==5){
                                 window.location.href = "victoria.html";
                             }
                         }
