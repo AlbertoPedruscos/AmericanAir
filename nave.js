@@ -497,7 +497,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                     for (var i = 0; i < elements.length; i++) {
                                         elements[i].classList.remove('borroso');
                                     }
-                                }, 3000);
+                                }, 4000);
                         
                                 // Reiniciar el contador y el tiempo después de cumplir la condición
                                 executionCount = 0;
@@ -513,7 +513,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 impactoC=impactoC+1;
                                 puntosUl(900);
 
-                                if (impactoC==5 || impactoC==10 || impactoC==15 || impactoC==20|| impactoC==25) {
+                                if (impactoC==5 || impactoC==10 || impactoC==15 || impactoC==20 || impactoC==25 || impactoC==30 || impactoC==35 || impactoC==40 || impactoC==45) {
                                     // Selección del elemento caza y efinal
                                     const caza2 = document.getElementById('caza');
                                     const efinal2 = document.querySelector('.efinal2');
