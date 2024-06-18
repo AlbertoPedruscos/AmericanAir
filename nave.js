@@ -470,7 +470,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 }, 3000);
                             }
                         }
-                        else if (enemigo.classList.contains('efinal2') && impactoC!=30) {
+                        else if (enemigo.classList.contains('efinal2') && impactoC!=50) {
                             const currentTime = Date.now();
                             
                             if (currentTime - lastExecutionTime < 2000) {
@@ -565,7 +565,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 crearEnemigoUnico();
                             }
                         }
-                        else if (enemigo.classList.contains('efinal2') && impactoC==30){
+                        else if (enemigo.classList.contains('efinal2') && impactoC==50){
                             animatedElement.remove(); // Eliminar el misil después de la colisión
                             showExplosion(enemigoCenterX - 50, enemigoCenterY - 50); // Mostrar explosión centrada
                             cooldown = false; // Resetear el cooldown después de la colisión
@@ -1137,7 +1137,7 @@ class EnemigoFinal2 {
         const factorEscala = ventanaAncho / referenciaAncho; // Inverso del factor de escala
 
         let direccion = Math.random() < 0.5 ? -1 : 1;
-        const velocidad = 25 * factorEscala; // Velocidad combinada
+        const velocidad = 35 * factorEscala; // Velocidad combinada
 
         let left = Math.random() * (ventanaAncho - 100);
 
