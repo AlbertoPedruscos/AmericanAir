@@ -538,10 +538,10 @@ document.addEventListener("DOMContentLoaded", function() {
                             if (level==4){
                                 window.location.href = "naves5.html";
                             }
-                            else if (level==5){
+                            else if (level==5 ||level==6){
                                 enemigo.remove();
                             }
-                            else{
+                            else if (level==3){
                                 window.location.href = "naves4.html";
                             }
                         }
@@ -553,6 +553,11 @@ document.addEventListener("DOMContentLoaded", function() {
                                 window.location.href = "naves6.html";
                             }
                             else{
+                                let elementos = document.querySelectorAll('.unico2');
+                                // Itera sobre cada elemento y lo elimina del DOM
+                                elementos.forEach(function(elemento) {
+                                elemento.remove();
+                                });
                                 enemigo.remove(); // Eliminar el enemigo si colisiona con el misil
                                 crearEnemigoFinal2();
                                 var musica = document.getElementById('musica');
