@@ -497,7 +497,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                     for (var i = 0; i < elements.length; i++) {
                                         elements[i].classList.remove('borroso');
                                     }
-                                }, 1500);
+                                }, 3000);
                         
                                 // Reiniciar el contador y el tiempo después de cumplir la condición
                                 executionCount = 0;
