@@ -87,6 +87,10 @@ label{
 .efinal{
     transform: rotate(0deg);
 }
+.efinal2{
+    width: 40vh;
+    height: 20vh;
+}
 .bottom-div {
     background-image: url(madera.jpg);
     background-size: cover;

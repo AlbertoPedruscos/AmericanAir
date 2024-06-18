@@ -2,8 +2,14 @@ let impacto = 0;
 
 let impactoB = 0;
 
+let impactoC= 0;
+
 let posicion = 0;
 
+let escudoC = false;
+
+let lastExecutionTime = 0;
+let executionCount = 0;
 
 var speedMultiplier=1;
 
@@ -13,6 +19,8 @@ var generacion=5;
 let llenando = true;
 let ultimate = false;
 let timerId = null;
+
+escudoC = false;
 
 function puntosUl(puntos) {
     if (llenando && puntosU < 2500) {
@@ -276,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para mostrar imágenes de enemigos
     function mostrarImagenes() {
-        if (level!=5){
+        if (level!=5 && level!=6){
             var numImagenesAMostrar = Math.floor(Math.random() * generacion) + generacion2;
 
             for (var i = 0; i < numImagenesAMostrar; i++) {
@@ -428,10 +436,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             cooldown = false; // Resetear el cooldown después de la colisión
                             impacto=impacto+1;
                         }
-                        else if (enemigo.classList.contains('efinal') && impacto==10){
-                            document.getElementById('')
-                        }
-                        else if (enemigo.classList.contains('efinal') && impactoB!=24){
+                        else if (enemigo.classList.contains('efinal') && impactoB!=25){
                             animatedElement.remove(); // Eliminar el misil después de la colisión
                             showExplosion(enemigoCenterX - 50, enemigoCenterY - 50); // Mostrar explosión centrada
                             cooldown = false; // Resetear el cooldown después de la colisión
@@ -465,6 +470,67 @@ document.addEventListener("DOMContentLoaded", function() {
                                 }, 3000);
                             }
                         }
+                        else if (enemigo.classList.contains('efinal2') && impactoC!=30) {
+                            const currentTime = Date.now();
+                            
+                            if (currentTime - lastExecutionTime < 2000) {
+                                executionCount++;
+                            } else {
+                                // Reiniciar el contador si han pasado más de 2 segundos
+                                executionCount = 1;
+                            }
+                            
+                            lastExecutionTime = currentTime;
+                            
+                            if (executionCount >= 3) {
+                                // Se ha ejecutado dos veces en menos de dos segundos
+                                escudoC = true; // Establecer escudoC a true
+                                var elements = document.getElementsByClassName('efinal2');
+                        
+                                // Iterar sobre la colección de elementos y agregar la clase 'borroso' a cada uno
+                                for (var i = 0; i < elements.length; i++) {
+                                    elements[i].classList.add('borroso');
+                                }
+                        
+                                setTimeout(() => {
+                                    escudoC = false; // Volver a false después de 2 segundos
+                                    for (var i = 0; i < elements.length; i++) {
+                                        elements[i].classList.remove('borroso');
+                                    }
+                                }, 1500);
+                        
+                                // Reiniciar el contador y el tiempo después de cumplir la condición
+                                executionCount = 0;
+                                lastExecutionTime = 0;
+                            }
+                            if (escudoC==true){
+
+                            }
+                            else{
+                                animatedElement.remove(); // Eliminar el misil después de la colisión
+                                showExplosion(enemigoCenterX - 50, enemigoCenterY - 50); // Mostrar explosión centrada
+                                cooldown = false; // Resetear el cooldown después de la colisión
+                                impactoC=impactoC+1;
+                                puntosUl(900);
+
+                                if (impactoC==5 || impactoC==10 || impactoC==15 || impactoC==20|| impactoC==25) {
+                                    // Selección del elemento caza y efinal
+                                    const caza2 = document.getElementById('caza');
+                                    const efinal2 = document.querySelector('.efinal2');
+
+                                    // Obtener el valor 'top' de caza
+                                    const topCaza = caza2.offsetTop;
+
+                                    // Mover efinal instantáneamente al valor 'top' de caza
+                                    efinal2.style.top = topCaza/2 + 'px';
+
+                                    // Después de 3 segundos, volver a la posición original de efinal
+                                    setTimeout(() => {
+                                        efinal2.style.top = "12%"; // Posición original de efinal
+                                    }, 3000);
+                                }
+                            }
+                        }
                         else if (enemigo.classList.contains('unico2') && impacto==9){
                             animatedElement.remove(); // Eliminar el misil después de la colisión
                             showExplosion(enemigoCenterX - 50, enemigoCenterY - 50); // Mostrar explosión centrada
@@ -479,11 +545,31 @@ document.addEventListener("DOMContentLoaded", function() {
                                 window.location.href = "naves4.html";
                             }
                         }
-                        else if (enemigo.classList.contains('efinal') && impactoB==24){
+                        else if (enemigo.classList.contains('efinal') && impactoB==25){
                             animatedElement.remove(); // Eliminar el misil después de la colisión
                             showExplosion(enemigoCenterX - 50, enemigoCenterY - 50); // Mostrar explosión centrada
                             cooldown = false; // Resetear el cooldown después de la colisión
                             if (level==5){
+                                window.location.href = "naves6.html";
+                            }
+                            else{
+                                enemigo.remove(); // Eliminar el enemigo si colisiona con el misil
+                                crearEnemigoFinal2();
+                                var musica = document.getElementById('musica');
+                                musica.pause();
+                                musica.currentTime = 0; // Reiniciar la música al principio
+                                musica.remove(); // Eliminar completamente el elemento de música del DOM
+                        
+                                var musica2 = document.getElementById('musica2');
+                                musica2.play();
+                                crearEnemigoUnico();
+                            }
+                        }
+                        else if (enemigo.classList.contains('efinal2') && impactoC==30){
+                            animatedElement.remove(); // Eliminar el misil después de la colisión
+                            showExplosion(enemigoCenterX - 50, enemigoCenterY - 50); // Mostrar explosión centrada
+                            cooldown = false; // Resetear el cooldown después de la colisión
+                            if (level==6){
                                 window.location.href = "victoria.html";
                             }
                         }
@@ -1031,7 +1117,182 @@ class EnemigoFinal {
     }
 }
 
-if (level==5){
+class EnemigoFinal2 {
+    constructor() {
+        this.nave = document.createElement('img');
+        this.nave.classList.add('imagen');
+        this.nave.classList.add('efinal2');
+        this.nave.src = 'proto.png'; // Cambia esto por la URL de la imagen de tu enemigo final
+        document.body.appendChild(this.nave);
+        this.mover();
+        this.destruida = false;
+        this.cooldown = false; // Flag de cooldown
+        this.disparar(); // Iniciar disparos al crear la nave
+    }
+
+    // Método para mover la nave enemiga
+    mover() {
+        const ventanaAncho = window.innerWidth;
+        const referenciaAncho = 1920; // Ancho de referencia para la resolución Full HD
+        const factorEscala = ventanaAncho / referenciaAncho; // Inverso del factor de escala
+
+        let direccion = Math.random() < 0.5 ? -1 : 1;
+        const velocidad = 25 * factorEscala; // Velocidad combinada
+
+        let left = Math.random() * (ventanaAncho - 100);
+
+        if (left < 0) {
+            left = 0;
+        } else if (left > ventanaAncho - 100) {
+            left = ventanaAncho - 100;
+        }
+
+        this.nave.style.left = left + 'px';
+        this.nave.style.display = 'block';
+
+        // Mover la nave de manera aleatoria
+        this.intervalId = setInterval(() => {
+            const leftActual = parseFloat(this.nave.style.left);
+            if (leftActual <= 0 || leftActual >= ventanaAncho - 100) {
+                direccion *= -1;
+            }
+            this.nave.style.left = (leftActual + velocidad * direccion) + 'px';
+        }, 50);
+    }
+
+    disparar() {
+        const dispararAleatorio = () => {
+            if (this.destruida || this.cooldown) return;
+
+            this.cooldown = true;
+            const aleatorio = Math.floor(Math.random() * 3) + 1; // Número aleatorio entre 1 y 3
+            if (aleatorio === 1) {
+                this.dispararEstiloUnico();
+            } else if (aleatorio === 2) {
+                this.dispararEstiloUnico2();
+            } else if (aleatorio === 3) {
+                this.dispararEstiloUnico3();
+            }
+        };
+
+        this.dispararIntervalId = setInterval(dispararAleatorio, 1000); // Intentar disparar cada segundo
+    }
+
+    // Método para disparar proyectiles al estilo EnemigoUnico
+    dispararEstiloUnico() {
+        const cicloDisparo = () => {
+            if (this.destruida) return;
+
+            const startDisparar = () => {
+                this.proyectilIntervalId = setInterval(() => {
+                    if (!this.destruida) {
+                        this.lanzarProyectil(5); // Velocidad del proyectil para EstiloUnico
+                    }
+                }, 200); // Dispara 5 proyectiles por segundo
+            };
+
+            startDisparar();
+
+            setTimeout(() => {
+                clearInterval(this.proyectilIntervalId); // Detener el disparo después de 3 segundos
+                if (!this.destruida) {
+                    setTimeout(() => {
+                        this.cooldown = false; // Reiniciar el cooldown después de 2 segundos
+                    }, 2000);
+                }
+            }, 3000);
+        };
+
+        cicloDisparo();
+    }
+
+    // Método para disparar proyectiles al estilo EnemigoUnico2
+    dispararEstiloUnico2() {
+        const dispararProyectiles = () => {
+            if (this.destruida) return;
+
+            this.proyectilIntervalId = setInterval(() => {
+                if (document.body.contains(this.nave)) {
+                    this.lanzarProyectil(3); // Velocidad del proyectil para EstiloUnico2
+                }
+            }, 100);
+
+            setTimeout(() => {
+                clearInterval(this.proyectilIntervalId); // Detiene el disparo después de 2 segundos
+                if (!this.destruida) {
+                    setTimeout(() => {
+                        this.cooldown = false; // Reiniciar el cooldown después de 2 segundos
+                    }, 2000);
+                }
+            }, 3000);
+        };
+
+        dispararProyectiles();
+    }
+
+    // Nuevo método para disparar proyectiles de una tercera manera
+    dispararEstiloUnico3() {
+        const dispararProyectilesRapidos = () => {
+            if (this.destruida) return;
+
+            this.proyectilIntervalId = setInterval(() => {
+                if (document.body.contains(this.nave)) {
+                    this.lanzarProyectil(1); // Velocidad del proyectil para EstiloUnico3, el más lento
+                }
+            }, 333); // Dispara proyectiles más lentos
+
+            setTimeout(() => {
+                clearInterval(this.proyectilIntervalId); // Detiene el disparo después de 1 segundo
+                if (!this.destruida) {
+                    setTimeout(() => {
+                        this.cooldown = false; // Reiniciar el cooldown después de 2 segundos
+                    }, 2000);
+                }
+            }, 3000);
+        };
+
+        dispararProyectilesRapidos();
+    }
+
+    // Método para lanzar proyectiles desde la nave enemiga
+    lanzarProyectil(velocidad) {
+        if (!document.body.contains(this.nave)) {
+            return; // Salir de la función si la nave ha sido eliminada
+        }
+
+        var proyectil = document.createElement('img');
+        proyectil.classList.add('proyectil');
+        proyectil.src = 'proyectil.png'; // Cambia esto por la URL de tus imágenes de proyectil
+        proyectil.style.position = 'absolute';
+        proyectil.style.left = (this.nave.offsetLeft + this.nave.clientWidth / 2 - 10) + 'px'; // Centrado horizontalmente
+        proyectil.style.top = (this.nave.offsetTop + this.nave.clientHeight) + 'px'; // Desde la parte inferior de la nave
+        document.body.appendChild(proyectil);
+
+        function moverProyectil() {
+            var topActual = parseFloat(proyectil.style.top);
+            proyectil.style.top = (topActual + velocidad * 5) + 'px'; // Velocidad del proyectil multiplicada por la velocidad
+
+            // Eliminar el proyectil si sale de la pantalla
+            if (topActual > window.innerHeight) {
+                proyectil.remove();
+                clearInterval(intervalId);
+            }
+        }
+
+        var intervalId = setInterval(moverProyectil, 20); // Mover el proyectil cada 20 ms
+    }
+
+    // Método para destruir la nave enemiga
+    destruir() {
+        this.destruida = true;
+        clearInterval(this.intervalId); // Detener el movimiento de la nave
+        clearInterval(this.dispararIntervalId); // Detener el disparo aleatorio
+        clearInterval(this.proyectilIntervalId); // Detener el lanzamiento de proyectiles
+        this.nave.remove(); // Eliminar la nave de la pantalla
+    }
+}
+
+if (level==5 || level==6){
     window.addEventListener('load', crearEnemigoFinal);
 }
 
@@ -1039,6 +1300,11 @@ if (level==5){
 function crearEnemigoFinal() {
     var enemigoFinal = new EnemigoFinal();
     return enemigoFinal;
+}
+
+function crearEnemigoFinal2() {
+    var enemigoFinal2 = new EnemigoFinal2();
+    return enemigoFinal2;
 }
 
 // Función para crear el enemigo único
