@@ -20,7 +20,7 @@
         <source src="explosion.mp3" type="audio/mp3">
     </audio>
     <div class="div-flotante">
-        <h2 id="te">Impactos 0/25</h2>
+        <h2 id="te">Destruye al Barón Rojo</h2>
         <h2 id="puntos">Puntucacion: 0 puntos</h2>
         <label for="">Ultimate: </label>
         <div class="circle">
@@ -52,8 +52,6 @@ window.onpageshow = function(event) {
 function puntos(puntos) {
     puntosT = puntosT + puntos;
     document.getElementById('puntos').innerHTML = "Puntuación: " + puntosT + " puntos";
-
-    document.getElementById('te').textContent = "Impactos " + (impactoB + 1) + "/25";
 }
 </script>
 <script src="nave.js"></script>
